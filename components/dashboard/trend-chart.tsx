@@ -84,14 +84,17 @@ export function TrendChart() {
                 </ChartContainer>
             </CardContent>
             <CardFooter>
-                <div className="flex w-full items-start gap-2 text-sm">
+                <div className="flex w-full items-start gap-2 text-sm border-t pt-4">
                     <div className="grid gap-2">
                         <div className="flex items-center gap-2 font-medium leading-none">
-                            Performance up by 15% this week <TrendingUp className="h-4 w-4" />
+                            Revenue growth exceeded 35% <TrendingUp className="h-4 w-4 text-emerald-500" />
                         </div>
                         <div className="flex items-center gap-2 leading-none text-muted-foreground">
-                            Week 1 - Week 5, 2024
+                            Q3 - Q4, 2023 Performance
                         </div>
+                    </div>
+                    <div className="ml-auto flex items-center rounded-full bg-primary/10 px-2 py-1">
+                        <span className="text-xs font-medium text-primary">+35%</span>
                     </div>
                 </div>
             </CardFooter>
