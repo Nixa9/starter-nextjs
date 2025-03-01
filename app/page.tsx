@@ -101,7 +101,14 @@ export default async function LandingPage() {
                     src="/app-1.jpeg"
                     alt="ChatHistory App Screenshot"
                     fill
-                    className="object-cover"
+                    className="object-cover dark:hidden"
+                    priority
+                  />
+                  <Image
+                    src="/app-1-dark.jpeg"
+                    alt="ChatHistory App Screenshot (Dark Mode)"
+                    fill
+                    className="object-cover hidden dark:block"
                     priority
                   />
                 </div>
