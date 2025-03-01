@@ -96,7 +96,7 @@ export default async function LandingPage() {
               <div className="aspect-[16/9] w-full bg-gradient-to-br from-muted/50 to-muted p-4">
                 <div className="h-full w-full rounded-lg bg-card flex items-center justify-center relative overflow-hidden">
                   <Image
-                    src={"/public/app-1.jpeg"}
+                    src="/app-1.jpeg"
                     alt="ChatHistory App Screenshot"
                     fill
                     className="object-cover"
