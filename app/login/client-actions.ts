@@ -8,7 +8,7 @@ export async function handleGoogleSignIn() {
     const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-            redirectTo: `/auth/callback`,
+            redirectTo: `${window.location.origin}/auth/callback`,
         },
     })
 
