@@ -35,6 +35,7 @@ export async function signup(formData: FormData) {
         options: {
             data: {
                 full_name: fullName,
+                is_new_user: true // Dodajemo marker za nove korisnike
             }
         }
     })

@@ -3,7 +3,6 @@
 import * as React from "react"
 import {
   Frame,
-  GalleryVerticalEnd,
   PieChart,
   Settings2,
   SquareTerminal,
@@ -22,88 +21,74 @@ import {
 } from "@/components/ui/sidebar"
 import { ModeToggle } from "./mode-toggle"
 
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+const navMainItems = [
+  {
+    title: "Playground",
+    url: "/dashboard",
+    icon: SquareTerminal,
+    isActive: true,
+    items: [
+      {
+        title: "History",
+        url: "/dashboard/history",
+      },
+      {
+        title: "Starred",
+        url: "/dashboard/starred",
+      },
+      {
+        title: "Settings",
+        url: "/dashboard/settings",
+      },
+    ],
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-  ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-  ],
-}
+  {
+    title: "Settings",
+    url: "/dashboard/settings",
+    icon: Settings2,
+    items: [
+      {
+        title: "General",
+        url: "/dashboard/settings/general",
+      },
+      {
+        title: "Team",
+        url: "/dashboard/settings/team",
+      },
+      {
+        title: "Billing",
+        url: "/dashboard/settings/billing",
+      },
+      {
+        title: "Limits",
+        url: "/dashboard/settings/limits",
+      },
+    ],
+  },
+]
+
+const projectItems = [
+  {
+    name: "Design Engineering",
+    url: "/dashboard/projects/design",
+    icon: Frame,
+  },
+  {
+    name: "Sales & Marketing",
+    url: "/dashboard/projects/sales",
+    icon: PieChart,
+  },
+]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavMain items={navMainItems} />
+        <NavProjects projects={projectItems} />
       </SidebarContent>
       <SidebarFooter>
         <ModeToggle />
