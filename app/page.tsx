@@ -2,8 +2,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, GalleryVerticalEnd } from "lucide-react"
+import { createClient } from '@/lib/supabase/server'
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
   return (
     <div className="flex min-h-svh flex-col">
       <header className="border-b border-border/40 backdrop-blur-xl fixed w-full z-50">
@@ -28,12 +32,20 @@ export default function LandingPage() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="ghost" className="text-sm font-medium">Login</Button>
-            </Link>
-            <Link href="/signup">
-              <Button className="text-sm font-medium">Get Started</Button>
-            </Link>
+            {user ? (
+              <Link href="/dashboard">
+                <Button className="text-sm font-medium">Dashboard</Button>
+              </Link>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button variant="ghost" className="text-sm font-medium">Login</Button>
+                </Link>
+                <Link href="/signup">
+                  <Button className="text-sm font-medium">Get Started</Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </header>
