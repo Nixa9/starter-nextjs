@@ -1,20 +1,22 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles, GalleryVerticalEnd } from "lucide-react"
 
 export default function LandingPage() {
   return (
     <div className="flex min-h-svh flex-col">
-      <header className="border-b border-border/40 backdrop-blur-sm fixed w-full z-50">
+      <header className="border-b border-border/40 backdrop-blur-xl fixed w-full z-50">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-semibold">
-            <div className="flex items-center justify-center h-8 w-8 rounded-md bg-primary/10">
-              <Sparkles className="h-4 w-4 text-primary" />
+          <a href="#" className="flex items-center gap-2 font-medium">
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <GalleryVerticalEnd className="size-4" />
             </div>
-            <span className="text-lg">ChatHistory</span>
-          </div>
-          
+            Acme Inc.
+          </a>
+
           <nav className="hidden md:flex items-center gap-8">
+            {/* rest of the navigation */}
             <Link href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Features
             </Link>
@@ -25,7 +27,7 @@ export default function LandingPage() {
               About
             </Link>
           </nav>
-          
+
           <div className="flex items-center gap-4">
             <Link href="/login">
               <Button variant="ghost" className="text-sm font-medium">Login</Button>
@@ -52,17 +54,17 @@ export default function LandingPage() {
                 <span className="mr-2 rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-primary-foreground">New</span>
                 <span className="text-muted-foreground">Introducing AI-powered chat history</span>
               </div>
-              
+
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
                 Your conversations,
                 <span className="text-primary"> intelligently organized</span>
               </h1>
-              
+
               <p className="mt-6 text-lg text-muted-foreground">
                 Never lose track of important discussions again. ChatHistory uses AI to organize,
                 search, and analyze your conversations across all platforms.
               </p>
-              
+
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/signup">
                   <Button size="lg" className="w-full sm:w-auto gap-2">
@@ -77,12 +79,18 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
-          
+
             {/* Hero image */}
             <div className="mt-16 rounded-xl border border-border/40 bg-background/80 shadow-lg backdrop-blur-sm overflow-hidden">
               <div className="aspect-[16/9] w-full bg-gradient-to-br from-muted/50 to-muted p-4">
-                <div className="h-full w-full rounded-lg bg-card flex items-center justify-center">
-                  <p className="text-muted-foreground">App screenshot will appear here</p>
+                <div className="h-full w-full rounded-lg bg-card flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src="/App-1.jpg"
+                    alt="ChatHistory App Screenshot"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               </div>
             </div>
