@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles, GalleryVerticalEnd } from "lucide-react"
+import { ArrowRight, GalleryVerticalEnd } from "lucide-react"
 
 export default function LandingPage() {
   return (
@@ -16,14 +16,13 @@ export default function LandingPage() {
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
-            {/* rest of the navigation */}
-            <Link href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="#features" className="text-sm font-medium hover:text-primary transition-colors">
               Features
             </Link>
-            <Link href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">
               Pricing
             </Link>
-            <Link href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors">
               About
             </Link>
           </nav>
@@ -51,7 +50,7 @@ export default function LandingPage() {
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="mx-auto max-w-3xl text-center">
               <div className="mb-6 inline-flex items-center rounded-full border border-border/40 bg-background/80 px-3 py-1 text-sm backdrop-blur">
-                <span className="mr-2 rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-primary-foreground">New</span>
+                <span className="mr-2 rounded-full bg-gradient-to-r from-primary to-purple-500 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-primary-foreground">New</span>
                 <span className="text-muted-foreground">Introducing AI-powered chat history</span>
               </div>
 
