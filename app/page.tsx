@@ -63,7 +63,7 @@ export default async function LandingPage() {
             <div className="mx-auto max-w-3xl text-center">
               <div className="mb-6 inline-flex items-center rounded-full border border-border/40 bg-background/80 px-3 py-1 text-sm backdrop-blur">
                 <span className="mr-2 rounded-full bg-gradient-to-r from-primary to-purple-500 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-primary-foreground">New</span>
-                <span className="text-muted-foreground">Introducing AI-powered chat history</span>
+                <span className="text-muted-foreground">Introducing AI-poweredd chat history</span>
               </div>
 
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
