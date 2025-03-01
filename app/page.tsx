@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, GalleryVerticalEnd } from "lucide-react"
 import { createClient } from '@/lib/supabase/server'
+import { ModeToggle } from "@/components/mode-toggle"
 
 export default async function LandingPage() {
   const supabase = await createClient()
@@ -32,6 +33,7 @@ export default async function LandingPage() {
           </nav>
 
           <div className="flex items-center gap-4">
+            <ModeToggle />
             {user ? (
               <Link href="/dashboard">
                 <Button className="text-sm font-medium">Dashboard</Button>
