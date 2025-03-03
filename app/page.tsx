@@ -36,7 +36,7 @@ export default async function LandingPage() {
             <ModeToggle />
             {user ? (
               <Link href="/dashboard">
-                <Button className="text-sm font-medium">Dashboard</Button>
+                <Button className="text-sm font-medium cursor-pointer">Dashboard</Button>
               </Link>
             ) : (
               <>

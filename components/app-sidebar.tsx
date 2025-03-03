@@ -30,38 +30,38 @@ const navMainItems = [
     items: [
       {
         title: "History",
-        url: "/dashboard/history",
+        url: "/dashboard", // Point to existing dashboard page
       },
       {
         title: "Starred",
-        url: "/dashboard/starred",
+        url: "/dashboard", // Point to existing dashboard page
       },
       {
         title: "Settings",
-        url: "/dashboard/settings",
+        url: "/dashboard",
       },
     ],
   },
   {
     title: "Settings",
-    url: "/dashboard/settings",
+    url: "/dashboard",
     icon: Settings2,
     items: [
       {
         title: "General",
-        url: "/dashboard/settings/general",
+        url: "/dashboard",
       },
       {
         title: "Team",
-        url: "/dashboard/settings/team",
+        url: "/dashboard",
       },
       {
         title: "Billing",
-        url: "/dashboard/settings/billing",
+        url: "/dashboard", // Point to existing dashboard page
       },
       {
         title: "Limits",
-        url: "/dashboard/settings/limits",
+        url: "/dashboard", // Point to existing dashboard page
       },
     ],
   },
@@ -70,12 +70,12 @@ const navMainItems = [
 const projectItems = [
   {
     name: "Design Engineering",
-    url: "/dashboard/projects/design",
+    url: "/dashboard", // Point to existing dashboard page
     icon: Frame,
   },
   {
     name: "Sales & Marketing",
-    url: "/dashboard/projects/sales",
+    url: "/dashboard", // Point to existing dashboard page
     icon: PieChart,
   },
 ]
