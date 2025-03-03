@@ -10,7 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -177,30 +176,34 @@ export function TeamSwitcher() {
               <DropdownMenuLabel className="text-muted-foreground text-xs">
                 Teams
               </DropdownMenuLabel>
-              {teams.map((team, index) => (
-                <React.Fragment key={team.id}>
-
-                  <DropdownMenuItem
-                    onClick={() => setActiveTeam(team)}
-                    className="gap-2 p-2 cursor-pointer"
-                  >
+              {teams.map((team) => (
+                <DropdownMenuItem
+                  key={team.id}
+                  onClick={() => setActiveTeam(team)}
+                  className="gap-2 p-2 cursor-pointer group"
+                >
+                  <div className="flex items-center flex-1 gap-2">
                     <Avatar className="h-6 w-6 rounded-xs">
                       <AvatarImage src={team.logo_url || undefined} />
                       <AvatarFallback className="border text-xs">
                         {team.name.slice(0, 2).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    {team.name}
-                    <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="gap-2 p-2 pl-8 text-sm text-muted-foreground cursor-pointer"
-                    onClick={() => handleTeamSettings(team.id)}
-                  >
-                    <Settings className="size-4" />
-                    Team Settings
-                  </DropdownMenuItem>
-                </React.Fragment>
+                    <span>{team.name}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleTeamSettings(team.id);
+                      }}
+                      className="opacity-70 hover:opacity-100 cursor-pointer"
+                    >
+                      <Settings className="size-4" />
+                      <span className="sr-only">Team Settings</span>
+                    </button>
+                  </div>
+                </DropdownMenuItem>
               ))}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="gap-2 p-2 cursor-pointer" onClick={handleCreateTeam}>
