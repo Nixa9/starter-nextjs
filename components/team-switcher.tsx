@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronsUpDown, Plus, GalleryVerticalEnd } from "lucide-react"
+import { ChevronsUpDown, Plus, GalleryVerticalEnd, Settings } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
 import {
@@ -20,8 +20,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useRouter } from "next/navigation"
 import { OnboardingModal } from "@/components/onboarding-modal"
+import { TeamSettingsModal } from "@/components/team-settings-modal"
 
 interface Team {
   id: string
@@ -35,9 +35,12 @@ export function TeamSwitcher() {
   const [activeTeam, setActiveTeam] = React.useState<Team | null>(null)
   const [loading, setLoading] = React.useState(true)
   const [showOnboarding, setShowOnboarding] = React.useState(false)
+  const [showCreateTeamModal, setShowCreateTeamModal] = React.useState(false)
+  const [showTeamSettingsModal, setShowTeamSettingsModal] = React.useState(false)
+  const [selectedTeamForSettings, setSelectedTeamForSettings] = React.useState<string | null>(null)
   const [userId, setUserId] = React.useState<string | null>(null)
   const supabase = createClient()
-  const router = useRouter()
+
 
   React.useEffect(() => {
     const fetchTeams = async () => {
@@ -89,9 +92,28 @@ export function TeamSwitcher() {
     }
   }, [supabase])
 
+  // Updated to show modal instead of navigation
   const handleCreateTeam = () => {
-    // Open modal to create new team
-    router.push('/dashboard/teams/new')
+    if (userId) {
+      setShowCreateTeamModal(true)
+    }
+  }
+
+  const handleTeamSettings = (teamId: string) => {
+    setSelectedTeamForSettings(teamId)
+    setShowTeamSettingsModal(true)
+  }
+
+  const handleTeamUpdated = (updatedTeam: Team) => {
+    // Update the teams list with the updated team
+    setTeams(teams.map(team =>
+      team.id === updatedTeam.id ? updatedTeam : team
+    ))
+
+    // If the updated team is the active team, update it too
+    if (activeTeam && activeTeam.id === updatedTeam.id) {
+      setActiveTeam(updatedTeam)
+    }
   }
 
   if (loading) {
@@ -111,7 +133,6 @@ export function TeamSwitcher() {
     )
   }
 
-  // Uklonjena provera za activeTeam
   return (
     <>
       <SidebarMenu>
@@ -157,20 +178,28 @@ export function TeamSwitcher() {
                 Teams
               </DropdownMenuLabel>
               {teams.map((team, index) => (
-                <DropdownMenuItem
-                  key={team.id}
-                  onClick={() => setActiveTeam(team)}
-                  className="gap-2 p-2"
-                >
-                  <Avatar className="h-6 w-6 rounded-xs">
-                    <AvatarImage src={team.logo_url || undefined} />
-                    <AvatarFallback className="border text-xs">
-                      {team.name.slice(0, 2).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  {team.name}
-                  <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
-                </DropdownMenuItem>
+                <React.Fragment key={team.id}>
+                  <DropdownMenuItem
+                    onClick={() => setActiveTeam(team)}
+                    className="gap-2 p-2"
+                  >
+                    <Avatar className="h-6 w-6 rounded-xs">
+                      <AvatarImage src={team.logo_url || undefined} />
+                      <AvatarFallback className="border text-xs">
+                        {team.name.slice(0, 2).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    {team.name}
+                    <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="gap-2 p-2 pl-8 text-sm text-muted-foreground"
+                    onClick={() => handleTeamSettings(team.id)}
+                  >
+                    <Settings className="size-4" />
+                    Team Settings
+                  </DropdownMenuItem>
+                </React.Fragment>
               ))}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="gap-2 p-2" onClick={handleCreateTeam}>
@@ -185,11 +214,26 @@ export function TeamSwitcher() {
       </SidebarMenu>
 
       {userId && (
-        <OnboardingModal
-          isOpen={showOnboarding}
-          onClose={() => setShowOnboarding(false)}
-          userId={userId}
-        />
+        <>
+          <OnboardingModal
+            isOpen={showOnboarding}
+            onClose={() => setShowOnboarding(false)}
+            userId={userId}
+          />
+          <OnboardingModal
+            isOpen={showCreateTeamModal}
+            onClose={() => setShowCreateTeamModal(false)}
+            userId={userId}
+          />
+          {selectedTeamForSettings && (
+            <TeamSettingsModal
+              isOpen={showTeamSettingsModal}
+              onClose={() => setShowTeamSettingsModal(false)}
+              teamId={selectedTeamForSettings}
+              onTeamUpdated={handleTeamUpdated}
+            />
+          )}
+        </>
       )}
     </>
   )
