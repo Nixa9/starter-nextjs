@@ -172,28 +172,35 @@ export function OnboardingModal({ isOpen, onClose, userId }: OnboardingModalProp
                 )}
 
                 <DialogFooter>
-                    {step > 1 && (
-                        <Button variant="outline" onClick={handleBack} disabled={isLoading}>
-                            Back
-                        </Button>
-                    )}
-                    {step < 2 ? (
-                        <Button onClick={handleNext}>Next</Button>
-                    ) : (
-                        <Button onClick={handleSubmit} disabled={isLoading}>
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Creating...
-                                </>
-                            ) : (
-                                <>
-                                    <Check className="mr-2 h-4 w-4" />
-                                    Create Team
-                                </>
-                            )}
-                        </Button>
-                    )}
+                  {step > 1 && (
+                    <Button type="button" variant="outline" onClick={handleBack} className="cursor-pointer">
+                      Back
+                    </Button>
+                  )}
+                  {step < 2 ? (
+                    <Button type="button" onClick={handleNext} className="cursor-pointer">
+                      Next
+                    </Button>
+                  ) : (
+                    <Button 
+                      type="button" 
+                      onClick={handleSubmit} 
+                      disabled={isLoading}
+                      className="cursor-pointer"
+                    >
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Creating...
+                        </>
+                      ) : (
+                        <>
+                          <Check className="mr-2 h-4 w-4" />
+                          Create Team
+                        </>
+                      )}
+                    </Button>
+                  )}
                 </DialogFooter>
             </DialogContent>
         </Dialog>

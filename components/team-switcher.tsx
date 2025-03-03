@@ -141,7 +141,7 @@ export function TeamSwitcher() {
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton
                 size="lg"
-                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
               >
                 {activeTeam ? (
                   <>
@@ -179,9 +179,10 @@ export function TeamSwitcher() {
               </DropdownMenuLabel>
               {teams.map((team, index) => (
                 <React.Fragment key={team.id}>
+
                   <DropdownMenuItem
                     onClick={() => setActiveTeam(team)}
-                    className="gap-2 p-2"
+                    className="gap-2 p-2 cursor-pointer"
                   >
                     <Avatar className="h-6 w-6 rounded-xs">
                       <AvatarImage src={team.logo_url || undefined} />
@@ -193,7 +194,7 @@ export function TeamSwitcher() {
                     <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    className="gap-2 p-2 pl-8 text-sm text-muted-foreground"
+                    className="gap-2 p-2 pl-8 text-sm text-muted-foreground cursor-pointer"
                     onClick={() => handleTeamSettings(team.id)}
                   >
                     <Settings className="size-4" />
@@ -202,7 +203,7 @@ export function TeamSwitcher() {
                 </React.Fragment>
               ))}
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="gap-2 p-2" onClick={handleCreateTeam}>
+              <DropdownMenuItem className="gap-2 p-2 cursor-pointer" onClick={handleCreateTeam}>
                 <div className="bg-background flex size-6 items-center justify-center rounded-md border">
                   <Plus className="size-4" />
                 </div>
